@@ -9,7 +9,10 @@
 
       <div class="col-md-3 text-end">
       <% if user_signed_in? %>
-        <%= link_to 'Logout', destroy_user_session_path, data: { turbo_method: :delete }, class: 'btn btn-outline-primary me-2' %>
+        <div class="d-flex  align-items-center">
+          <%= current_user.email %> (<%= current_user.role %>) &nbsp;
+          <%= link_to 'Logout', destroy_user_session_path, data: { turbo_method: :delete }, class: 'btn btn-outline-primary me-2' %>
+        </div>        
       <% else %>
         <%= link_to 'Sign in', new_user_session_path, class: 'btn btn-outline-primary me-2' %>
         <%= link_to 'Sign up', new_user_registration_path, class: 'btn btn-primary' %>

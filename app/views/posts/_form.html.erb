@@ -11,22 +11,15 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :title, style: "display: block" %>
-    <%= form.text_field :title %>
+  <div class="mb-3">
+    <%= form.text_field :title, class: 'form-control', placeholder: 'Title' %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.text_area :body, class: 'form-control', rows: 5, placeholder: 'Body' %>
   </div>
 
   <div>
-    <%= form.label :body, style: "display: block" %>
-    <%= form.text_area :body %>
-  </div>
-
-  <div>
-    <%= form.label :user_id, style: "display: block" %>
-    <%= form.text_field :user_id %>
-  </div>
-
-  <div>
-    <%= form.submit %>
+    <%= form.submit 'Save Post', class: 'btn btn-primary' %>
   </div>
 <% end %>
