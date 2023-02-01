@@ -11,8 +11,19 @@
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+  <div>
+    <div class="container">
+    <% if notice %>
+      <div class="alert alert-primary d-flex justify-content-center"><%= notice %></div>
+    <% end %>
+    <% if alert %>
+      <div class="alert alert-warning d-flex justify-content-center" class="alert"><%= alert %></div>
+    <% end %>      
+      <%= render 'shared/navbar' %>
+    </div>
+  </div>
+  <div class="container">
     <%= yield %>
+  </div>
   </body>
 </html>

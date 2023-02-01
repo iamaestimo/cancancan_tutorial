@@ -1,0 +1,19 @@
+<div class="container">
+    <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+        <p class="fs-2">CanCanCan Tutorial app</p>
+
+      <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+        <li><%= link_to 'New post', new_post_path, class: 'nav-link px-2 link-secondary' %></li>
+        <li><%= link_to 'Posts', posts_path, class: 'nav-link px-2 link-dark' %></li>
+      </ul>
+
+      <div class="col-md-3 text-end">
+      <% if user_signed_in? %>
+        <%= link_to 'Logout', destroy_user_session_path, data: { turbo_method: :delete }, class: 'btn btn-outline-primary me-2' %>
+      <% else %>
+        <%= link_to 'Sign in', new_user_session_path, class: 'btn btn-outline-primary me-2' %>
+        <%= link_to 'Sign up', new_user_registration_path, class: 'btn btn-primary' %>
+        <% end %>
+      </div>
+    </header>
+  </div>
