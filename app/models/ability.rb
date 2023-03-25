@@ -4,24 +4,30 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    writer_editor_abilities
+    reader_abilities
+    writer_abilities
+    editor_abilities
 
     if user.writer?
       writer_abilities
     elsif user.editor?
       editor_abilities
+    else
+      reader_abilities
     end
 
   end
 
   private 
 
-  def writer_editor_abilities
+  def reader_abilities
     can :read, Post
   end
 
   def writer_abilities
     can :update, Post, user: Current.user
+    can :create, Post
+    cannot :destroy, Post
   end
 
   def editor_abilities

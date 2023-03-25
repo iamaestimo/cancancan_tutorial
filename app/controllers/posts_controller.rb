@@ -4,7 +4,8 @@ class PostsController < ApplicationController
 
   # GET /posts or /posts.json
   def index
-    @posts = Post.all
+    # @posts = Post.accessible_by(current_ability).order("created_at DESC")
+    @posts = Post.published.accessible_by(current_ability).order("created_at DESC")
   end
 
   # GET /posts/1 or /posts/1.json
@@ -23,6 +24,7 @@ class PostsController < ApplicationController
   # POST /posts or /posts.json
   def create
     @post = current_user.posts.new(post_params)
+    authorize! :create, @post
 
     respond_to do |format|
       if @post.save
@@ -50,7 +52,9 @@ class PostsController < ApplicationController
 
   # DELETE /posts/1 or /posts/1.json
   def destroy
+    authorize! :destroy, @post
     @post.destroy
+
 
     respond_to do |format|
       format.html { redirect_to posts_url, notice: 'Post was successfully destroyed.' }
